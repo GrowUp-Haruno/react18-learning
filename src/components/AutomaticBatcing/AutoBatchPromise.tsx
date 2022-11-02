@@ -1,5 +1,4 @@
 import { FC, useState } from 'react';
-import { flushSync } from 'react-dom';
 import { pokeDataType } from '../../commons/model/pokeApi';
 
 export const AutoBatchPromise: FC = () => {
