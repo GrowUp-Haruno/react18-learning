@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState, startTransition } from 'react';
 import { taskModel } from '../../commons/model/task';
 import { Avater } from '../atoms/Avater';
 
@@ -23,15 +23,18 @@ const tasks = createDummyTask();
 export const TaskList: FC = () => {
   const [taskList, setTaskList] = useState(tasks);
   const [selectAsign, setSelectAsign] = useState<'A' | 'B' | 'C' | null>(null);
+
+  console.log('TaskList rendering');
+
   const onSelectAsign = (asign: 'A' | 'B' | 'C' | null) => {
+    // 緊急性の高い更新（urgent update）として処理される
     setSelectAsign(asign);
-    // setTaskList(tasks.filter((task) => !asign || task.asign === asign));
+
+    // startTransitionで囲われた更新関数は、緊急性の高くない更新 (non-urgent update)として処理される
+    startTransition(() => {
+      setTaskList(tasks.filter((task) => !asign || task.asign === asign));
+    });
   };
-  useEffect(() => {
-    setTaskList(
-      tasks.filter((task) => !selectAsign || task.asign === selectAsign)
-    );
-  }, [selectAsign]);
 
   return (
     <div>
