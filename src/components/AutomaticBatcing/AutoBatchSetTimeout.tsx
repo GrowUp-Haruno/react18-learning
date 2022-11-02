@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
-export const AutoBatchSetTimeout = () => {
+export const AutoBatchSetTimeout: FC = () => {
   const [count1, setCount1] = useState<number>(0);
   const [count2, setCount2] = useState<number>(0);
   const [now, setNow] = useState<Date>(new Date());

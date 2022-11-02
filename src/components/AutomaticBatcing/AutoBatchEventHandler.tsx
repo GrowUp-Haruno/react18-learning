@@ -6,10 +6,10 @@ export const AutoBatchEventHandler: FC = () => {
 
   console.log('AutoBatchEventHandler is rendering');
 
-  // 下記のイベントハンドラが完了した時点で再レンダリングが発生する
   const onCountUp = () => {
     setCount1((count1) => count1 + 1);
     setCount2((count2) => count2 + 1);
+    // イベントハンドラが完了した時点で再レンダリングが発生する
   };
 
   return (
