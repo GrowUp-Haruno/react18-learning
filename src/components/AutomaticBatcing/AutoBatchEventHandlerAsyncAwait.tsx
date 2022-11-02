@@ -1,5 +1,6 @@
 import { FC, useState } from 'react';
 import { pokeDataType } from '../../commons/model/pokeApi';
+import { Loading } from '../atoms/Loading';
 
 export const AutoBatchEventHandlerAsyncAwait: FC = () => {
   console.log('AutoBatchEventHandlerAsyncAwait is rendering');
@@ -22,7 +23,7 @@ export const AutoBatchEventHandlerAsyncAwait: FC = () => {
       <p>ボタンを押すとデータを取得します</p>
       <button onClick={pokemonGetAsync}>ゲットだぜ！</button>
       {isLoading ? (
-        <p>Now Loading...</p>
+        <Loading />
       ) : (
         pokemons?.results.map((result) => (
           <p key={result.name}>{result.name}</p>
