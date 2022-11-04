@@ -1,7 +1,9 @@
 import { FC, useState, useTransition } from 'react';
+import { useDisclosure } from '../../commons/hooks/useDisclosure';
 import { taskModel } from '../../commons/model/task';
 import { Avater } from '../atoms/Avater';
 import { SwitchViewButton } from '../atoms/Button';
+import { ShowComponent } from '../atoms/Layout';
 import { TaskList } from './TaskList';
 
 const user: {
@@ -26,12 +28,7 @@ export const Task: FC = () => {
   const [isPending, startTransition] = useTransition();
   const [taskList, setTaskList] = useState(tasks);
   const [selectAsign, setSelectAsign] = useState<'A' | 'B' | 'C' | null>(null);
-
-  const [isView, setIsView] = useState(false);
-  const onViewChange = () => {
-    setIsView((prev) => !prev);
-    setSelectAsign(null);
-  };
+  const { isOpen, onToggle } = useDisclosure();
 
   console.log('TaskList rendering');
 
@@ -47,9 +44,9 @@ export const Task: FC = () => {
   return (
     <div>
       <div style={{ marginTop: '8px' }}>
-        <SwitchViewButton isView={isView} onClick={onViewChange} />
+        <SwitchViewButton isOpen={isOpen} onClick={onToggle} />
       </div>
-      <div style={{ display: isView ? undefined : 'none', marginTop: '8px' }}>
+      <ShowComponent isOpen={isOpen}>
         <div
           style={{
             display: 'flex',
@@ -78,7 +75,7 @@ export const Task: FC = () => {
           </button>
         </div>
         <TaskList isPending={isPending} taskList={taskList} />
-      </div>
+      </ShowComponent>
     </div>
   );
 };

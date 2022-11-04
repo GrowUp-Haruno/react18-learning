@@ -1,5 +1,6 @@
 import { FC, useState } from 'react';
 import { flushSync } from 'react-dom';
+import { useDisclosure } from '../../commons/hooks/useDisclosure';
 import { taskModel } from '../../commons/model/task';
 import { Avater } from '../atoms/Avater';
 import { SwitchViewButton } from '../atoms/Button';
@@ -26,6 +27,7 @@ const tasks = createDummyTask();
 export const TaskUseDeferredvalue: FC = () => {
   const [taskList, setTaskList] = useState(tasks);
   const [selectAsign, setSelectAsign] = useState<'A' | 'B' | 'C' | null>(null);
+  const { } = useDisclosure();
   const [isView, setIsView] = useState(false);
   const onViewChange = () => {
     setIsView((prev) => !prev);
@@ -42,7 +44,7 @@ export const TaskUseDeferredvalue: FC = () => {
   return (
     <div>
       <div style={{ marginTop: '8px' }}>
-        <SwitchViewButton isView={isView} onClick={onViewChange} />
+        <SwitchViewButton isOpen={isView} onClick={onViewChange} />
       </div>
       <div style={{ display: isView ? undefined : 'none', marginTop: '8px' }}>
         <div
