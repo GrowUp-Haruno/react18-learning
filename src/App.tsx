@@ -4,7 +4,8 @@ import { AutoBatchEventHandlerAsyncAwait } from './components/AutomaticBatcing/A
 import { AutoBatchFlushSync } from './components/AutomaticBatcing/AutoBatchFlushSync';
 import { AutoBatchPromise } from './components/AutomaticBatcing/AutoBatchPromise';
 import { AutoBatchSetTimeout } from './components/AutomaticBatcing/AutoBatchSetTimeout';
-import { TaskList } from './components/Transition/TaskList';
+import { Task } from './components/Transition/Task';
+import { TaskUseDeferredvalue } from './components/Transition/TaskUseDeferredvalue';
 
 function App() {
   return (
@@ -17,7 +18,9 @@ function App() {
       <AutoBatchFlushSync />
       <hr />
       <p>Transition</p>
-      <TaskList />
+      <Task />
+      <p>Transition（useDeferredValue）</p>
+      <TaskUseDeferredvalue />
     </div>
   );
 }
