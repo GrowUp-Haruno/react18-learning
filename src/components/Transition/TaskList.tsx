@@ -1,4 +1,4 @@
-import { FC, useEffect, useState, startTransition } from 'react';
+import { FC, useState, useTransition } from 'react';
 import { taskModel } from '../../commons/model/task';
 import { Avater } from '../atoms/Avater';
 
@@ -21,6 +21,7 @@ const createDummyTask = () => {
 const tasks = createDummyTask();
 
 export const TaskList: FC = () => {
+  const [isPending, startTransition] = useTransition();
   const [taskList, setTaskList] = useState(tasks);
   const [selectAsign, setSelectAsign] = useState<'A' | 'B' | 'C' | null>(null);
 
@@ -29,7 +30,6 @@ export const TaskList: FC = () => {
   const onSelectAsign = (asign: 'A' | 'B' | 'C' | null) => {
     // 緊急性の高い更新（urgent update）として処理される
     setSelectAsign(asign);
-
     // startTransitionで囲われた更新関数は、緊急性の高くない更新 (non-urgent update)として処理される
     startTransition(() => {
       setTaskList(tasks.filter((task) => !asign || task.asign === asign));
@@ -65,19 +65,25 @@ export const TaskList: FC = () => {
           リセット
         </button>
       </div>
-      {taskList.map((task) => (
-        <div
-          key={task.id}
-          style={{
-            width: '300px',
-            margin: 'auto',
-            backgroundColor: 'lavender',
-          }}
-        >
-          <p>タイトル: {task.title}</p>
-          <p>担当者: {task.asign}</p>
-        </div>
-      ))}
+      <div
+        style={{
+          opacity: isPending ? 0.5 : 1,
+        }}
+      >
+        {taskList.map((task) => (
+          <div
+            key={task.id}
+            style={{
+              width: '300px',
+              margin: 'auto',
+              backgroundColor: 'lavender',
+            }}
+          >
+            <p>タイトル: {task.title}</p>
+            <p>担当者: {task.asign}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
