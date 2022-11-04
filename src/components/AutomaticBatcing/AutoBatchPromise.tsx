@@ -1,5 +1,6 @@
 import { FC, useState } from 'react';
 import { pokeDataType } from '../../commons/model/pokeApi';
+import { Loading } from '../atoms/Loading';
 
 export const AutoBatchPromise: FC = () => {
   console.log('AutoBatchPromise is rendering');
@@ -25,7 +26,7 @@ export const AutoBatchPromise: FC = () => {
       <p>ボタンを押すとデータを取得します</p>
       <button onClick={pokemonGet}>ゲットだぜ！</button>
       {isLoading ? (
-        <p>Now Loading...</p>
+        <Loading />
       ) : (
         pokemons?.results.map((result) => (
           <p key={result.name}>{result.name}</p>
