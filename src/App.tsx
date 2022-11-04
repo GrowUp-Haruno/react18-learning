@@ -1,8 +1,7 @@
 import './App.css';
 import { AutomaticBatcing } from './components/AutomaticBatcing';
+import { Suspense } from './components/Suspense';
 import { Transition } from './components/Transition';
-import { Task } from './components/Transition/Task';
-import { TaskUseDeferredvalue } from './components/Transition/TaskUseDeferredvalue';
 
 function App() {
   return (
@@ -11,6 +10,7 @@ function App() {
       <hr />
       <Transition />
       <hr />
+      <Suspense />
     </div>
   );
 }

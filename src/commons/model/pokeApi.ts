@@ -7,3 +7,9 @@ export type pokeDataType = {
     url: string;
   }[];
 };
+
+export type pokeDetailsType = {
+  id: number;
+  name: string;
+  types: { type: { name: string } }[];
+};
