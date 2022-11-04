@@ -1,17 +1,29 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
-export const useDisclosure = () => {
-  const [isOpen, setIsOpen] = useState(false);
+export type ToggleButtonProps = {
+  isOpen: boolean;
+  onClick: () => void;
+};
 
-  const onOpen = () => {
+export const useDisclosure = (isOpenDefault = false) => {
+  const [isOpen, setIsOpen] = useState(isOpenDefault);
+
+  const onOpen = useCallback(() => {
     setIsOpen(true);
-  };
-  const onClose = () => {
+  }, []);
+  const onClose = useCallback(() => {
     setIsOpen(false);
-  };
-  const onToggle = () => {
+  }, []);
+  const onToggle = useCallback(() => {
     setIsOpen((isOpen) => !isOpen);
-  };
+  }, []);
+  const getToggleButtonProps = useCallback(
+    (): ToggleButtonProps => ({
+      isOpen: isOpen,
+      onClick: onToggle,
+    }),
+    [isOpen]
+  );
 
-  return { isOpen, onOpen, onClose, onToggle };
+  return { isOpen, onOpen, onClose, onToggle, getToggleButtonProps };
 };
