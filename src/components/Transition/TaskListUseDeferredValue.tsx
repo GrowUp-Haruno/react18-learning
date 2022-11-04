@@ -1,17 +1,15 @@
-import { FC } from 'react';
+import { FC, useDeferredValue } from 'react';
 import { taskModel } from '../../commons/model/task';
 type TaskListProps = {
-  isPending: boolean;
   taskList: taskModel[];
 };
-export const TaskList: FC<TaskListProps> = ({ isPending, taskList }) => {
+export const TaskListUseDeferredValue: FC<TaskListProps> = ({ taskList }) => {
+  // ツリー内の緊急性の低い更新の再レンダーを遅延させることができる
+  const deferredTaskList = useDeferredValue(taskList);
+
   return (
-    <div
-      style={{
-        opacity: isPending ? 0.5 : 1,
-      }}
-    >
-      {taskList.map((task) => (
+    <div>
+      {deferredTaskList.map((task) => (
         <div
           key={task.id}
           style={{
