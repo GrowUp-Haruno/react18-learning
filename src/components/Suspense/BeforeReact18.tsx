@@ -11,10 +11,11 @@ export const BeforeReact18 = () => {
     ['pokemonGet-BeforeReact18'],
     () => pokemonGet(20)
   );
-
   const { isOpen, getToggleButtonProps } = useDisclosure();
+  
   if (isError) return <p>BeforeReact18 ロード失敗</p>;
   if (isLoading) return <Loading />;
+  
   return (
     <div style={{ marginTop: '8px' }}>
       <p>Before React18</p>

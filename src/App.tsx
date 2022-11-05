@@ -1,6 +1,6 @@
 import './App.css';
 import { AutomaticBatcing } from './components/AutomaticBatcing';
-import { Suspense } from './components/Suspense';
+import { SuspenseL } from './components/Suspense';
 import { Transition } from './components/Transition';
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
       <hr />
       <Transition />
       <hr />
-      <Suspense />
+      <SuspenseL />
     </div>
   );
 }
