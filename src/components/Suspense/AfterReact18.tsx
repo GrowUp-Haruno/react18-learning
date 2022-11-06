@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { pokemonGet } from '../../commons/utils/pokemonGet';
 import { Box } from '../atoms/Layout';
-import { FetchSuspense } from '../atoms/System';
 
 export const AfterReact18 = () => {
   const { data } = useQuery(['pokemonGet-AfterReact18'], () => pokemonGet(151));

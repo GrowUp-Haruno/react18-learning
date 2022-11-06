@@ -15,11 +15,12 @@ export const ShowComponent: FC<ShowComponentProps> = ({ isOpen, children }) => {
 
 type HStackProps = {
   children: ReactNode;
+  width: string;
 };
-export const HStack: FC<HStackProps> = (props) => (
+export const HStack: FC<HStackProps> = ({ width, ...props }) => (
   <div
     {...props}
-    style={{ display: 'flex', padding: '16px', width: '1000px' }}
+    style={{ display: 'flex', width: width, border: '1px solid gray' }}
   />
 );
 
@@ -38,14 +39,16 @@ export const FlexGrowBox: FC<FlexGrowBoxProps> = ({ ...props }) => (
 type BoxProps = {
   children: ReactNode;
   height?: string;
+  isPending?: boolean;
 };
-export const Box: FC<BoxProps> = ({ height, ...props }) => (
+export const Box: FC<BoxProps> = ({ height, isPending = false, ...props }) => (
   <div
     {...props}
     style={{
       height: height,
       overflowY: 'scroll',
       border: '1px solid gray',
+      opacity: isPending ? 0.5 : 1,
     }}
   />
 );
