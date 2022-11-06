@@ -1,12 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
 import { pokemonGet } from '../../commons/utils/pokemonGet';
 import { Box } from '../atoms/Layout';
+import { FetchSuspense } from '../atoms/System';
 
-export const AfterReact18 = () => {
-  const { data } = useQuery(['pokemonGet-AfterReact18'], () => pokemonGet(151));
+export const AfterReact18Slow = () => {
+  const { data } = useQuery(['pokemonGet-AfterReact18Slow'], () =>
+    pokemonGet(1000)
+  );
   return (
     <Box height="300px">
-      <p>After React18</p>
+      <p>After React18 SlowFetch</p>
       {data?.map((pokemon) => (
         <div
           key={pokemon.id}

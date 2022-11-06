@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import { useDisclosure } from '../../commons/hooks/useDisclosure';
 import { pokemonGet } from '../../commons/utils/pokemonGet';
 import { SwitchViewButton } from '../atoms/Button';
@@ -11,10 +10,11 @@ export const BeforeReact18 = () => {
     ['pokemonGet-BeforeReact18'],
     () => pokemonGet(20)
   );
-
   const { isOpen, getToggleButtonProps } = useDisclosure();
+  
   if (isError) return <p>BeforeReact18 ロード失敗</p>;
   if (isLoading) return <Loading />;
+  
   return (
     <div style={{ marginTop: '8px' }}>
       <p>Before React18</p>
