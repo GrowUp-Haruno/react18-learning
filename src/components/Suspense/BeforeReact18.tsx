@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import { useDisclosure } from '../../commons/hooks/useDisclosure';
 import { pokemonGet } from '../../commons/utils/pokemonGet';
 import { SwitchViewButton } from '../atoms/Button';
